@@ -21,9 +21,9 @@ $second = 5;
 $third = 8;
 
 echo '<pre>';
-echo $first, ', ', $second, ', ', $third, '<br>';
-echo 'Sum = ',  $sum = $first + $second + $third, '<br>';
-echo 'Result = ',  $result = 2 + 6 + 2/5 - 1, '<br>';
+echo $first . ', ' . $second . ', ' . $third . '<br>';
+echo 'Sum = '.   $sum = $first + $second + $third, '<br>';
+echo 'Result = '.   $result = 2 + 6 + 2/5 - 1 . '<br>';
 echo '</pre>';
 
 //Task4
@@ -32,16 +32,22 @@ $a = 1;
 $b = 2;
 
 echo '<pre>';
-echo 'a = ', $a, '<br>';
-echo 'b = ', $b, '<br>';
+echo 'a = ' . $a . '<br>';
+echo 'b = ' . $b . '<br>';
 echo '</pre>';
 
-$c = $a;
-//$d = &$b; interferes with Task11
+$c = $a; // c = 1
+$c = 3; // c = 3, a = 1
+
+
+//$s = &$b; // s = 2, b = 2
+$s = 4; // s = 4, b = 4
+
+echo '!!!!!!' . $s;
 
 echo '<pre>';
-echo 'c = ', $c, '<br>';
-//echo 'd = ', $d, '<br>'; interferes with Task11
+echo 'c = ' . $c . '<br>';
+echo 'd = ' . $d . '<br>';
 echo '</pre>';
 
 $a = 3;
@@ -62,7 +68,7 @@ const BB = 33;
 //BB = 55;
 
 echo '<pre>';
-echo 'Sum AA + BB = ', AA + BB, '<br>';
+echo 'Sum AA + BB = ' . AA + BB . '<br>';
 echo '</pre>';
 
 //Task6
@@ -95,28 +101,27 @@ echo '</pre>';
 
 $a = 'Доброе утро';
 $b = 'дамы';
-$b = 'дамы';
 $c = 'и господа';
 
 echo '<pre>';
 echo $a, '<br>';
 echo $b, '<br>';
 echo $c, '<br>';
-echo $a . ', ' . $b . ' ' . $c, '<br>';
+echo $a . ', ' . $b . ' ' . $c . '<br>';
 echo '</pre>';
 
 //Task9
 
-$array1 = range(1, 5);
-$array2 = range(1, 10, 2);
+$array1 = range(1, 5); //[1, 2, 3, 4, 5]
+$array2 = range(1, 10, 2); //[1, 3, 5, 7, 9]
 
 $array1['element'] = 'newValue';
 
 unset($array2[0]);
 
 echo '<pre>';
-echo $array1[2], '<br>';
-echo $array2[2], '<br>';
+echo $array1[2] . '<br>';
+echo $array2[2] . '<br>';
 
 var_dump($array1);
 var_dump($array2);
@@ -128,8 +133,8 @@ echo '</pre>';
 //Task 10
 
 const MIN = 10, MAX = 50;
-$x = 10;
-if ($x > MIN && $x < 50) {
+$x = 20;
+if ($x > MIN && $x < MAX) {
     echo '+';
 } elseif ($x == MIN || $x == MAX) {
     echo '+-';
@@ -139,10 +144,14 @@ if ($x > MIN && $x < 50) {
 
 //Task11
 
+
+//10x^2 + 21x - 10 = 0;
+//ax^2 + bx + c = 0;
 $a = 10;
 $b = 21;
 $c = -10;
 
+// d = b^2 - 4ac
 $d = $b**2 - 4 * $a * $c;
 
 if ($d > 0) {
