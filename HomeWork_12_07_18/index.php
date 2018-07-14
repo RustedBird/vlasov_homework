@@ -2,11 +2,15 @@
 
 //Task1
 $products = [
-    $goods1 = ['name' => 'Телевизор', 'price' => '400', 'quantity' => 1],
-    $goods2 = ['name' => 'Телефон', 'price' => '300', 'quantity' => 3],
-    $goods3 = ['name' => 'Кроссовки', 'price' => '150', 'quantity' => 2]
+    ['name' => 'Телевизор', 'price' => '400', 'quantity' => 1],
+    ['name' => 'Телефон', 'price' => '300', 'quantity' => 3],
+    ['name' => 'Кроссовки', 'price' => '150', 'quantity' => 2]
 ];
 
+/**
+ * @param $array
+ * @return array
+ */
 function getResults($array)
 {
     $result = ['sum' => 0, 'quantity' => 0];
@@ -25,6 +29,12 @@ foreach (getResults($products) as $key => $value) {
 
 
 //Task2
+/**
+ * @param int $a
+ * @param int $b
+ * @param int $c
+ * @return array|bool|float|int
+ */
 function resolveEquation(int$a, int$b, int$c)
 {
     $d = $b**2 - 4 * $a * $c;
@@ -32,12 +42,12 @@ function resolveEquation(int$a, int$b, int$c)
     if ($d > 0) {
         $x1 = (-$b + sqrt($d)) / (2 * $a);
         $x2 = (-$b - sqrt($d)) / (2 * $a);
-        return $result = [$x1, $x2];
+        return [$x1, $x2];
     } elseif ($d == 0) {
         $x = -$b/(2 * $a);
-        return $result = $x;
+        return $x;
     } else {
-        return $result = false;
+        return false;
     }
 }
 
@@ -47,6 +57,10 @@ echo '</pre>';
 
 
 //Task3
+/**
+ * @param $array
+ * @return mixed
+ */
 function deleteNegatives($array)
 {
     foreach ($array as $key => $value) {
@@ -72,10 +86,7 @@ function deleteNegativesLink(&$array)
             unset($array[$key]);
         }
     }
-    return $array;
 }
-
-
 
 echo '<pre>';
 echo 'Initial array<br>';
