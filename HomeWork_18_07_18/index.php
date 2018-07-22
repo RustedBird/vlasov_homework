@@ -14,22 +14,18 @@
 setcookie('lastVisit', date("Y-m-d h:i:sa"));
 setcookie('visit', 'visited', time()+36000);
 
-if ($_COOKIE['counter']) {
+if (isset($_COOKIE['counter'])) {
     $a = $_COOKIE['counter'];
-    $a++;
-
 } else {
-    $a = 1;
+    $a = 0;
 }
-setcookie('counter', $a, time()+36000);
-
+setcookie('counter', ++$a);
 
 if(!$_COOKIE['visit']) {
-    echo "Добро пожаловать, новичек! <br>";
+    echo 'Добро пожаловать, новичек! <br>';
 } else {
-    echo "С возвращением, дружище! <br>";
+    echo 'С возвращением, дружище! <br>';
 }
-
 
 /*
  * Задача 2: Дата и время последнего посещения
