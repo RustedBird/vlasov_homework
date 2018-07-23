@@ -181,7 +181,7 @@ echo '<hr>';
 $array = array(1, 0, 6, 9, 4, 5, 2, 3, 8, 7); // исходный массив
 
 function bubbleSort(array $numbers, callable $callback = NULL) { // сортировка пузырьком
-    for ($i = 0; $i < count($numbers); $i++) {
+    for ($i = 0; $i < count($numbers) - 1; $i++) {
         foreach ($numbers as $key => $value) {
             if ($numbers[$key] > $numbers[$key + 1] && $numbers[$key + 1] !== NULL) { // если текуший элемент больше следующего и следующий существует
                 $tmp_var = $numbers[$key + 1];
@@ -196,7 +196,7 @@ function bubbleSort(array $numbers, callable $callback = NULL) { // сортир
     return $numbers;
 };
 
-$newArray = bubbleSort($array, function ($item) { // новый массив
+$newArray = bubbleSort($array/*, function ($item) { // новый массив
     $result = [];
     foreach ($item as $value) {
         if (!($value % 2) && $value > 0) { // выводим все положительные четные элементы
@@ -204,7 +204,7 @@ $newArray = bubbleSort($array, function ($item) { // новый массив
         }
     }
     return $result;
-});
+}*/);
 
 echo 'Старый массив:<br>';
 var_dump($array);
