@@ -181,11 +181,13 @@ echo '<hr>';
 $array = array(1, 0, 6, 9, 4, 5, 2, 3, 8, 7); // исходный массив
 
 function bubbleSort(array $numbers, callable $callback = NULL) { // сортировка пузырьком
-    foreach ($numbers as $key => $value) {
-        if ($numbers[$key] > $numbers[$key + 1] && $numbers[$key + 1] !== NULL) { // если текуший элемент больше следующего и следующий существует
-            $tmp_var = $numbers[$key + 1];
-            $numbers[$key + 1] = $numbers[$key]; // меняем элементы местами
-            $numbers[$key] = $tmp_var;
+    for ($i = 0; $i < count($numbers); $i++) {
+        foreach ($numbers as $key => $value) {
+            if ($numbers[$key] > $numbers[$key + 1] && $numbers[$key + 1] !== NULL) { // если текуший элемент больше следующего и следующий существует
+                $tmp_var = $numbers[$key + 1];
+                $numbers[$key + 1] = $numbers[$key]; // меняем элементы местами
+                $numbers[$key] = $tmp_var;
+            }
         }
     }
     if ($callback) {
