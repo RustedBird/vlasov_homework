@@ -105,7 +105,7 @@ echo '<hr>';
 
 $numbers = range(0, 1000);
 foreach($numbers as $value) {
-    if (strpos($value, '3') && $value % 5) {
+    if (strpos($value, '3') !== false && $value % 5) {
         echo "$value, ";
     }
 }
@@ -196,7 +196,7 @@ function bubbleSort(array $numbers, callable $callback = NULL) { // сортир
     return $numbers;
 };
 
-$newArray = bubbleSort($array/*, function ($item) { // новый массив
+$newArray = bubbleSort($array, function ($item) { // новый массив
     $result = [];
     foreach ($item as $value) {
         if (!($value % 2) && $value > 0) { // выводим все положительные четные элементы
@@ -204,7 +204,7 @@ $newArray = bubbleSort($array/*, function ($item) { // новый массив
         }
     }
     return $result;
-}*/);
+});
 
 echo 'Старый массив:<br>';
 var_dump($array);
