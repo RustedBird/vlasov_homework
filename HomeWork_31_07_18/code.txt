@@ -24,7 +24,12 @@ SELECT * FROM [Orders] WHERE OrderDate BETWEEN '1996-07-04'AND '1996-08-07' AND 
 
 5) Узнать солько заказов было сделано для каждого города(city) из таблицы Customers.
 
-SELECT COUNT(City), City FROM [Customers] GROUP BY City ORDER BY COUNT(City) DESC;
+SELECT COUNT(Orders.OrderID), City
+FROM Customers
+INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+GROUP BY City
+ORDER BY COUNT(Orders.OrderID) DESC;
+
 
 
 6) Из таблицы (Product) вывести только те продукты у которых поставщик (Supplier): New Orleans Cajun Delights(2) и Tokyo Traders(4) и добавить к выводу продутка Имя поставщика (SupplierName)
@@ -32,7 +37,9 @@ SELECT COUNT(City), City FROM [Customers] GROUP BY City ORDER BY COUNT(City) DES
 SELECT ProductID, ProductName, Products.SupplierID, Suppliers.SupplierName CategoryID, Unit, Price  FROM Products
 INNER JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID
 WHERE (Suppliers.SupplierName = 'New Orleans Cajun Delights')
-OR (Suppliers.SupplierName = 'Tokyo Traders') ORDER BY Suppliers.SupplierID;
+OR (Suppliers.SupplierName = 'Tokyo Traders')
+ORDER BY Suppliers.SupplierID;
+
 
 
 7) Узнать общую стоимость заказов для пользователя.
@@ -42,8 +49,9 @@ FROM (((Customers
 INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID)
 INNER JOIN OrderDetails ON OrderDetails.OrderID = Orders.OrderID)
 INNER JOIN Products ON Products.ProductID = OrderDetails.ProductID)
-GROUP BY CustomerName
+GROUP BY Customers.CustomerID
 ORDER BY SUM(Products.Price * OrderDetails.Quantity) DESC
+
 
 
 8)Вывести среднюю сумму всех заказов на каждую дату (OrderDate) в таблице (Orders), если средняя сумма заказов в этот день была больше  > 30 и к каждой дате добавить человека, кто в этот день принимал заказ из таблицы Employees
@@ -55,8 +63,7 @@ INNER JOIN OrderDetails ON OrderDetails.OrderID = Orders.OrderID)
 INNER JOIN Products ON Products.ProductID = OrderDetails.ProductID)
 INNER JOIN Employees ON Employees.EmployeeID = Orders.EmployeeID)
 GROUP BY Orders.OrderDate
-HAVING AvgPrice > 30
-
+HAVING AvgPrice < 30
 
 
 
