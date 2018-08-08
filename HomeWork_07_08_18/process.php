@@ -10,6 +10,8 @@ $university_id = $_POST['university_id'];
 $response['result'] = true;
 $response['message'] = 'Successfully added';
 
+$dbConnection = getConnection();
+
 if (mb_strlen($name, 'UTF-8') >= 15) { //Проверка имени
     $response['result'] = false;
     $response['message'] = 'name is to long';
@@ -20,7 +22,6 @@ if (mb_strlen($name, 'UTF-8') >= 15) { //Проверка имени
 }
 
 if ($response['result']) { //Если все ОК, соединяемся с базой и пишем туда нашего студента
-    $dbConnection = getConnection();
 
     $sth = $dbConnection->prepare('INSERT INTO student
     (name, age, university_id)
@@ -32,6 +33,13 @@ if ($response['result']) { //Если все ОК, соединяемся с б�
             'university_id' => $university_id,
         ]
     );
+}
+
+//Выводим студентов
+if ($_POST['student_print'] == 'true') {
+
+    $stmt = $dbConnection->query('SELECT * FROM student');
+    $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 echo json_encode($response);
