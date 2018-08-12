@@ -1,3 +1,20 @@
+<?php
+/*include 'components/db.php';
+
+$dbConnection = getConnection();
+
+$stmt = $dbConnection->query('SELECT * FROM student');
+$response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($response as $value){
+    echo "<p>";
+    foreach ($value as $key => $value2) {
+        echo "$key: $value2, ";
+    }
+    echo '</p>';
+}
+*/?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,9 +60,9 @@
             $result.html('Имя введено неверно'); //Если проверка не прошла, выводим ошибку
         } else if (!/^[0-9]*$/.test($age)) { //Проверяем, чтобы введены только цифры
             $result.html('возраст должен содержать только цифры');
-        }/* else if ($age < 18 || $age > 100) { //Границы возраста
+        } else if ($age < 18 || $age > 100) { //Границы возраста
             $result.html('возраст должен быть от 18 до 100');
-        } */ else { //Если все путем, отправляем на запрос
+        } else { //Если все путем, отправляем на запрос
             $.ajax({
                 url: $this.attr('action'),
                 method: $this.attr('method'),
@@ -56,7 +73,6 @@
                 },
                 success: function (response) {
                     $result.html(response.message);
-                    console.log(response);
                 },
                 error: function (response) {
                     $result.html('Unexpected error, please try again');
@@ -78,7 +94,7 @@
             },
             success: function (response) {
                 var text = '';
-                for (var i = 0; i < response.length; i++) {
+                for (i in response) {
                     var student = response[i];
                         text += '<p>';
                     for (j in student) {
