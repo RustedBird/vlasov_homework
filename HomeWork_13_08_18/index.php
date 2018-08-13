@@ -38,7 +38,6 @@
             $.ajax({
                 url: $this.attr('action'),
                 method: $this.attr('method'),
-                data: '',
                 dataType: 'json',
                 beforeSend: function () {
                 },

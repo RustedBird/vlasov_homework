@@ -8,7 +8,7 @@ $user = 'root';
 $pass = '';
 $charset = 'utf8';
 
-if (isset($_POST)) {
+if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     try {
         $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
         $opt = [
