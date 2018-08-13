@@ -16,11 +16,27 @@
             vertical-align: middle;
             padding: 10px;
         }
+        .clear {
+            display: inline-block;
+            padding: .5rem 1rem;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            border-radius: .3rem;
+            align-items: flex-start;
+            text-align: center;
+            cursor: default;
+            color: buttontext;
+            border-width: 2px;
+            border-style: outset;
+            border-color: buttonface;
+            border-image: initial;
+        }
     </style>
 </head>
 <div class="container">
     <form class="jumbotron text-center" id="myForm" action="books.php" method="post">
         <input class="btn-lg bg-light" type="submit" name="send" value="Get books list">
+        <div class="btn-lg bg-light clear">Clear</div>
     </form>
     <div class="booksList"></div>
 </div>
@@ -32,6 +48,7 @@
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
 <script>
+    var $bookList = $('.booksList')
     $('#myForm').on('submit', function (event) {
         event.preventDefault();
         var $this = $(this);
@@ -42,7 +59,7 @@
                 beforeSend: function () {
                 },
                 success: function (response) {
-                    $('.booksList').html(response)
+                    $bookList.html(response)
                 },
                 error: function (response) {
                     console.log('error');
@@ -51,6 +68,9 @@
             });
         }
     )
+    $('.clear').on('click', function(){
+        $bookList.empty();
+    })
 </script>
 </body>
 </html>
