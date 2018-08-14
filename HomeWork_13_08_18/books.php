@@ -19,7 +19,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
 
         $pdo = new PDO($dsn, $user, $pass, $opt);
 
-        $stmt = $pdo->query('SELECT * FROM book');
+        $stmt = $pdo->query('SELECT * FROM book ORDER BY sort_order DESC');
 
         $allBooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach ($allBooks as $key => $result) {
